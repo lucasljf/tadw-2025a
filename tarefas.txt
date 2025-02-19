@@ -1,0 +1,16 @@
+1. Cadastrar cliente
+2. Listar cliente
+3. Editar cliente
+
+4. Cadastrar produto
+5. Listar produto
+6. Deletar produto
+
+7. Efetuar venda
+8. Listar vendas
+
+9. Login e senha
+
+-----------------------
+- gerar comprovante de venda
+- trabalhar com entregas? Encomendas?
