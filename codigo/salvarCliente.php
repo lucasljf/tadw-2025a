@@ -9,4 +9,3 @@ $endereco = $_POST['endereco'];
 $sql = "INSERT INTO tb_cliente (nome, cpf, endereco) VALUES ('$nome', '$cpf', '$endereco')";
 
 mysqli_query($conexao, $sql);
-?>

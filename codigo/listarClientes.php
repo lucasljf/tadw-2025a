@@ -21,7 +21,7 @@ require_once "conexao.php";
             <td>Endereço</td>
         </tr>
         <?php
-        
+
         $sql = "SELECT * FROM tb_cliente";
         $resultados = mysqli_query($conexao, $sql);
 
@@ -30,7 +30,7 @@ require_once "conexao.php";
             $nome = $linha['nome'];
             $cpf = $linha['cpf'];
             $endereco = $linha['endereco'];
-            
+
             echo "<tr>";
             echo "<td>$id</td>";
             echo "<td>$nome</td>";
