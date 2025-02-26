@@ -6,17 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Acesso ao sistema</h1>
-
-    <form action="verificarLogin.php" method="post">
+    <form action="salvarUsuario.php" method="post">
+        Nome: <br>
+        <input type="text" name="nome"> <br><br>
         E-mail: <br>
         <input type="text" name="email"> <br><br>
         Senha: <br>
         <input type="text" name="senha"> <br><br>
 
-        <a href="formUsuario.php">Primeiro acesso</a> <br><br>
-
-        <input type="submit" value="Acessar">
+        <input type="submit" value="Cadastrar">
     </form>
 </body>
 </html>
