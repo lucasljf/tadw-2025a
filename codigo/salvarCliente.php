@@ -7,10 +7,18 @@ $cpf = $_POST['cpf'];
 $endereco = $_POST['endereco'];
 
 if ($id == 0) {
-    // echo "novo";
-    $sql = "INSERT INTO tb_cliente (nome, cpf, endereco) VALUES ('$nome', '$cpf', '$endereco')";
+    $sql = "INSERT INTO tb_cliente (nome, cpf, endereco) VALUES (?, ?, ?)";
+
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'sss', $nome, $cpf, $endereco);
 } else {
-    // echo "atualizar";
-    $sql = "UPDATE tb_cliente SET nome='$nome', cpf='$cpf', endereco='$endereco' WHERE idcliente=$id";
+    $sql = "UPDATE tb_cliente SET nome=?, cpf=?, endereco=? WHERE idcliente=?";
+
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'sssi', $nome, $cpf, $endereco, $id);
 }
-mysqli_query($conexao, $sql);
+mysqli_stmt_execute($comando);
+
+mysqli_stmt_close($comando);
