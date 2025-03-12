@@ -1,13 +1,12 @@
 <?php
-    require_once "conexao.php";
+require_once "conexao.php";
+require_once "funcoes.php";
 
-    $id = $_GET['id'];
+$id = $_GET['id'];
 
-    $sql = "DELETE FROM tb_cliente WHERE idcliente = ?";
-    $comando = mysqli_prepare($conexao, $sql);
-
-    mysqli_stmt_bind_param($comando, 'i', $id);
-    mysqli_stmt_execute($comando);
-
-    mysqli_stmt_close($comando);
+if (deletarCliente($conexao, $id)) {
+    header("Location: listarClientes.php");
+} else {
+    header("Location: erro.php");
+}
 ?>
