@@ -10,9 +10,7 @@ $endereco = $_POST['endereco'];
 if ($id == 0) {
     salvarCliente($conexao, $nome, $cpf, $endereco);
 } else {
-    $sql = "UPDATE tb_cliente SET nome=?, cpf=?, endereco=? WHERE idcliente=?";
-
-    $comando = mysqli_prepare($conexao, $sql);
-
-    mysqli_stmt_bind_param($comando, 'sssi', $nome, $cpf, $endereco, $id);
+    editarCliente($conexao, $nome, $cpf, $endereco, $id);
 }
+
+header("Location: listarClientes.php");
