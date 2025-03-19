@@ -40,9 +40,9 @@ function salvarCliente($conexao, $nome, $cpf, $endereco) {
     return $funcionou;
 };
 
-function deletarProduto($conexao, $idproduto) {
-    
-};
+function deletarProduto($conexao, $idproduto) {};
 
 function listarProdutos() {};
+
+function salvarProduto() {};
 ?>
