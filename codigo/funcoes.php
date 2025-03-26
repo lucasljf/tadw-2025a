@@ -10,7 +10,7 @@ function deletarCliente($conexao, $idcliente) {
     mysqli_stmt_close($comando);
     
     return $funcionou; //true ou false
-}
+};
 
 function listarClientes($conexao) {
     $sql = "SELECT * FROM tb_cliente";
@@ -26,7 +26,7 @@ function listarClientes($conexao) {
 
     mysqli_stmt_close($comando);
     return $lista_clientes;
-}
+};
 
 function salvarCliente($conexao, $nome, $cpf, $endereco) {
     $sql = "INSERT INTO tb_cliente (nome, cpf, endereco) VALUES (?, ?, ?)";
@@ -34,10 +34,14 @@ function salvarCliente($conexao, $nome, $cpf, $endereco) {
     
     mysqli_stmt_bind_param($comando, 'sss', $nome, $cpf, $endereco);
     
-    $funcionou = mysqli_stmt_execute($comando);
+    mysqli_stmt_execute($comando);
     
+    // retorna o valor do id que acabou de ser inserido
+    $idcliente = mysqli_stmt_insert_id($comando);
+
     mysqli_stmt_close($comando);
-    return $funcionou;
+
+    return $idcliente;
 };
 
 function editarCliente($conexao, $nome, $cpf, $endereco, $idcliente) {

@@ -7,4 +7,6 @@ $nome = "Teste automatico";
 $cpf = "000.000.000-00";
 $endereco = "Rua Automatico";
 
-salvarCliente($conexao, $nome, $cpf, $endereco);
+$idcliente = salvarCliente($conexao, $nome, $cpf, $endereco);
+
+echo $idcliente;
