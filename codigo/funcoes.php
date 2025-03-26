@@ -44,8 +44,12 @@ function editarCliente($conexao, $nome, $cpf, $endereco, $idcliente) {
     $sql = "UPDATE tb_cliente SET nome=?, cpf=?, endereco=? WHERE idcliente=?";
     $comando = mysqli_prepare($conexao, $sql);
     
+    // varchar, string, data -> s
+    // inteiro -> i
+    // dinheiro, decimal -> d
     mysqli_stmt_bind_param($comando, 'sssi', $nome, $cpf, $endereco, $idcliente);
     
+
     $funcionou = mysqli_stmt_execute($comando);
     
     mysqli_stmt_close($comando);
@@ -59,4 +63,20 @@ function listarProdutos() {};
 function salvarProduto() {};
 
 function editarProduto() {};
+
+
+//desafio
+function salvarUsuario() {};
+
+function salvarVenda() {};
+
+// retornar uma variável com todos os dados do cliente
+function pesquisarClienteId() {};
+
+// retornar uma variável com todos os dados do produto
+function pesquisarProdutoId() {};
+
+//mostrar o nome do cliente ao invés do id
+//mostrar o nome do produto ao invés do id
+function listarVendas() {};
 ?>
