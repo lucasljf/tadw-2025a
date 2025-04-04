@@ -72,10 +72,33 @@ function editarProduto() {};
 //desafio
 function salvarUsuario() {};
 
-function salvarVenda() {};
+function salvarVenda($conexao, $idcliente, $idproduto, $valor_total, $data) {
+    $sql = "INSERT INTO tb_venda (idcliente, idproduto, valor_total, data) VALUES (?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'iids', $idcliente, $idproduto, $valor_total, $data);
+
+    $funcionou = mysqli_stmt_execute($comando);
+    mysqli_stmt_close($comando);
+    
+    return $funcionou;
+};
 
 // retornar uma variável com todos os dados do cliente
-function pesquisarClienteId() {};
+function pesquisarClienteId($conexao, $idcliente) {
+    $sql = "SELECT * FROM tb_cliente WHERE idcliente = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $idcliente);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $cliente = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $cliente;
+};
 
 // retornar uma variável com todos os dados do produto
 function pesquisarProdutoId() {};
