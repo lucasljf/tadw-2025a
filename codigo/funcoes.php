@@ -136,4 +136,28 @@ function pesquisarProdutoId($conexao, $idproduto) {
 //mostrar o nome do cliente ao invés do id
 //mostrar o nome do produto ao invés do id
 function listarVendas() {};
+function listarItemVenda($conexao, $idvenda) {
+    $sql = "SELECT * FROM tb_item_venda WHERE idvenda = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $idvenda);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_itens = [];
+    while ($item = mysqli_fetch_assoc($resultado)) {
+
+        // buscando o produto para pegar o nome
+        $id_produto = $item['idproduto'];
+        $produto = pesquisarProdutoId($conexao, $id_produto);
+        $nome_produto = $produto['nome'];
+
+        $item['nome_produto'] = $nome_produto;
+        $lista_itens[] = $item;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_itens;
+};
 ?>
