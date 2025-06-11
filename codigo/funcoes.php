@@ -28,11 +28,11 @@ function listarClientes($conexao) {
     return $lista_clientes;
 };
 
-function salvarCliente($conexao, $nome, $cpf, $endereco) {
-    $sql = "INSERT INTO tb_cliente (nome, cpf, endereco) VALUES (?, ?, ?)";
+function salvarCliente($conexao, $nome, $cpf, $endereco, $foto) {
+    $sql = "INSERT INTO tb_cliente (nome, cpf, endereco, foto) VALUES (?, ?, ?, ?)";
     $comando = mysqli_prepare($conexao, $sql);
     
-    mysqli_stmt_bind_param($comando, 'sss', $nome, $cpf, $endereco);
+    mysqli_stmt_bind_param($comando, 'ssss', $nome, $cpf, $endereco, $foto);
     
     mysqli_stmt_execute($comando);
     
