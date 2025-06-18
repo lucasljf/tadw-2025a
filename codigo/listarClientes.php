@@ -1,3 +1,10 @@
+<?php
+    require_once "verificaLogado.php";
+
+    if ($_SESSION['tipo'] != 'g') {
+        header("Location: home.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
