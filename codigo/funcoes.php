@@ -131,6 +131,27 @@ function pesquisarClienteId($conexao, $idcliente) {
     return $cliente;
 };
 
+function pesquisarClienteNome($conexao, $nome)
+{
+    $sql = "SELECT * FROM tb_cliente WHERE nome LIKE ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    $nome = "%" . $nome . "%";
+    mysqli_stmt_bind_param($comando, 's', $nome);
+
+    mysqli_stmt_execute($comando);
+
+    $resultados = mysqli_stmt_get_result($comando);
+
+    $lista_clientes = [];
+    while ($cliente = mysqli_fetch_assoc($resultados)) {
+        $lista_clientes[] = $cliente;
+    }
+    mysqli_stmt_close($comando);
+
+    return $lista_clientes;
+};
+
 // retornar uma variável com todos os dados do produto
 function pesquisarProdutoId($conexao, $idproduto) {
     $sql = "SELECT * FROM tb_produto WHERE idproduto = ?";
